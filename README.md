@@ -37,38 +37,7 @@ npm run dev
 Now you can open http://localhost:3000 and the web app should be up and running.
 
 
-## Run in production
-### Locally
-#### Make sure all tests pass and there's no lint errors
-```bash
-npm run test && npm run lint
-```
-#### Build the Next.js app
-```bash
-npm run build:next
-```
-#### Start the Node.js server
-```
-npm run start
-```
-
-### With Docker
+## Run in production with Docker
 1. [Install Docker](https://docs.docker.com/get-docker/) on your machine.
 2. Build the container: `docker build -t er-docker .`.
 3. Run the container: `docker run -p 3000:3000 er-docker`.
-
-### Deploy to remote server with pm2
-First make sure to add your credentials in a `.env` file.
-#### Install pm2
-```bash
-npm install pm2 -g
-```
-#### Setup remote
-```bash
-pm2 deploy pm2.config.js production setup
-```
-
-#### Deploy
-```bash
-pm2 deploy pm2.config.js production
-```
