@@ -25,5 +25,5 @@ const withNextra = require("nextra")({
 
 module.exports = withNextra({
   // if using Docker, need to use standalone
-  // output: "standalone",
+  output: "standalone",
 });
