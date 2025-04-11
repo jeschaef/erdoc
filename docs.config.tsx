@@ -2,9 +2,9 @@ import React from "react";
 
 const DocsConfig = {
   project: {
-    link: "https://github.com/matias-lg/er",
+    link: "https://github.com/jeschaef/erdoc",
   },
-  docsRepositoryBase: "https://github.com/matias-lg/er/tree/main",
+  docsRepositoryBase: "https://github.com/jeschaef/erdoc",
   logo: <span style={{ fontWeight: 800 }}>ERdoc Playground</span>,
   useNextSeoProps: () => ({
     titleTemplate: "%s",
