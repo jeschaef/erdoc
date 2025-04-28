@@ -23,6 +23,8 @@ import {
   createRelationshipNodeId,
 } from "./common";
 
+
+// THIS DOES HAVE SOMETHING  TO DO WITH JSON 
 const inheritanceToReactflowElements = (
   childEntityNodeId: string,
   parentEntityNodeId: string,

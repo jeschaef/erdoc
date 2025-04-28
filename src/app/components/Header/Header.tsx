@@ -10,7 +10,7 @@ import LocaleSwitcher from "./LocaleSwitcher";
 import { ErDocChangeEvent } from "../../types/CodeEditor";
 import AboutButton from "./AboutButton";
 
-const PROJECT_GITHUB = "https://github.com/matias-lg/er";
+const PROJECT_GITHUB = "https://github.com/jeschaef/erdoc";
 
 const HeaderElement = ({
   children,

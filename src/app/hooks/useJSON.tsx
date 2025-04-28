@@ -54,6 +54,7 @@ export const useJSON = (onErDocChange: (evt: ErDocChangeEvent) => void) => {
       id: edge.id,
       source: edge.source,
       target: edge.target,
+      //cardinality: edge.
     }));
     const editorValue = monaco?.editor.getModels()[0].getValue();
 
