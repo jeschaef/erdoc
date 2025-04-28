@@ -102,16 +102,21 @@ entity =
     
 // Atributos de la entidad
 entityAttribute =
-	identifier:attributeIdentifier [ \t]* childAttributes:declareComposite? [ \t]* isKey:(declareIsKey {return true})? [ \t]*
+	identifier:attributeIdentifier [ \t]* 
+    childAttributes:declareComposite? [ \t]* 
+    isKey:(declareIsKey {return true})? [ \t]*
+    isMultivalued:(declareIsMultiValued { return true })? [ \t]*
     {
     	const attribute = {name: identifier, location: getLocation(location)}
         attribute.isKey = isKey === true
+        attribute.isMultivalued = isMultivalued === true
         const isComposite = childAttributes !== null
         attribute.isComposite = isComposite
         attribute.childAttributesNames = isComposite? childAttributes : null
         return attribute
     }
     
+
 declareComposite =
     beginComposite
         childAttribs: listOfAttributes
@@ -251,6 +256,7 @@ Rparen = ")"
 declareEntity = "entity"i
 declareExtends = "extends"i
 declareIsKey "key" = "key"
+declareIsMultiValued "@" = "@"
 declareIsPartialKey "partial key" = "pkey"
 declareRelationship = "relation"i
 declareAggregation = "aggregation"i

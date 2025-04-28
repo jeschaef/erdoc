@@ -14,6 +14,7 @@ export type Entity = {
   attributes: EntityAttribute[];
   hasParent: boolean;
   parentName: string | null;
+  isMultivalued: boolean; 
   hasDependencies: boolean;
   dependsOn: {
     relationshipName: string[];

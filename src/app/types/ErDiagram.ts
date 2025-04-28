@@ -69,10 +69,21 @@ export type EntityEdge = Edge<{
   erId?: string;
 }>;
 
+export type MultivaluedAttributeNode = Node<
+  {
+    label: string;
+    isKey: boolean;
+    entityIsWeak: boolean;
+    erId?: string;
+  },
+  "multivalued-attribute"
+>;
+
 export type ErNode =
   | EntityNode
   | EntityAttributeNode
   | CompositeAttributeNode
+  | MultivaluedAttributeNode
   | RelationshipNode
   | RelationshipAttributeNode
   | AggregationNode
@@ -99,13 +110,20 @@ type erRelationshipAttributeType = erNodeType<
 type erAggregationType = erNodeType<"aggregation", AggregationNode>;
 type erIsAType = erNodeType<"isA", IsANode>;
 
+
+type erMultivaluedAttributeType = erNodeType<
+  "multivalued-attribute", 
+  MultivaluedAttributeNode
+>;
+
 type ErNodeTypes = erEntityType &
   erEntityAttributeType &
   erCompositeAttributeType &
   erRelationshipType &
   erRelationshipAttributeType &
   erAggregationType &
-  erIsAType;
+  erIsAType &
+  erMultivaluedAttributeType;
 
 type AddKeys<T, NewKeys extends keyof T> = T & { [key in NewKeys]: T[keyof T] };
 type ErEdgeTypes = AddKeys<EdgeTypes, "erEdge">;
