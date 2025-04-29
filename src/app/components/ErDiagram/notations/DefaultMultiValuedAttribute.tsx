@@ -9,14 +9,14 @@ const DefaultMultiValuedEntity = ({
   return (
     <>
       {/* Double border effect for multivalued entity */}
-      <div className="relative min-w-[120px] min-h-[80px] flex items-center justify-center">
+      <div className="relative min-w-[120px] rounded-[50%] min-h-[80px] flex items-center justify-center">
         {/* Outer border - similar to regular entity but with double effect */}
         <div className={`absolute inset-0 ${
-          data.isKey ? "border-[5px] border-double" : "border-2"
-        } border-blue-700 bg-blue-200`}></div>
+          data.isKey ? "border-[5px] border-double rounded-[50%]" : "border-2 rounded-[50%]" 
+        } border-yellow-700 bg-yellow-200`}></div>
         
         {/* Inner border - creates the double border effect */}
-        <div className="absolute inset-4 border-2 border-blue-700 bg-blue-200 flex items-center justify-center">
+        <div className="absolute inset-4 border-2 rounded-[50%] border-yellow-700 bg-yellow-200 flex items-center justify-center">
           <div className="z-10 p-4 text-center">{data.label}</div>
         </div>
       </div>
