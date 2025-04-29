@@ -78,7 +78,7 @@ export const entityToReactflowElements = (
 
   const entityNode: EntityNode = {
     id: entityId,
-    type:  "entity",
+    type: entity.isMultivalued ? "multivalued-entity" : "entity",
     data: { label: entity.name, isMultiValued: entity.isMultivalued, isWeak: entity.hasDependencies },
     position,
   };

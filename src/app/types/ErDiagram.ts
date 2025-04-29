@@ -9,7 +9,7 @@ export type EntityNode = Node<
     isWeak: boolean;
     erId?: string;
   },
-  "entity"
+  "entity" | "multivalued-entity"
 >;
 
 export type EntityAttributeNode = Node<
