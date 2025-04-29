@@ -5,21 +5,21 @@ import { Node, Edge } from "reactflow";
 export type EntityNode = Node<
   {
     label: string;
-    isMultiValued: boolean, 
     isWeak: boolean;
     erId?: string;
   },
-  "entity" | "multivalued-entity"
+  "entity"
 >;
 
 export type EntityAttributeNode = Node<
   {
     label: string;
     isKey: boolean;
+    isMultiValued: boolean, 
     entityIsWeak: boolean;
     erId?: string;
   },
-  "entity-attribute"
+  "entity-attribute" | "multivalued-attribute"
 >;
 
 export type CompositeAttributeNode = Node<
@@ -74,6 +74,7 @@ export type MultivaluedAttributeNode = Node<
   {
     label: string;
     isKey: boolean;
+    isMultiValued: boolean; 
     entityIsWeak: boolean;
     erId?: string;
   },

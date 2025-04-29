@@ -78,8 +78,8 @@ export const entityToReactflowElements = (
 
   const entityNode: EntityNode = {
     id: entityId,
-    type: entity.isMultivalued ? "multivalued-entity" : "entity",
-    data: { label: entity.name, isMultiValued: entity.isMultivalued, isWeak: entity.hasDependencies },
+    type: "entity",
+    data: { label: entity.name, isWeak: entity.hasDependencies },
     position,
   };
   nodes.push(entityNode);
@@ -100,11 +100,12 @@ export const entityToReactflowElements = (
     const attrID = `entity-attr: ${entity.name}|${attr.name}`;
     nodes.push({
       id: attrID,
-      type: "entity-attribute",
+      type: attr.isMultivalued ? "multivalued-attribute" : "entity-attribute",
       data: {
         label: attr.name,
         isKey: attr.isKey,
         entityIsWeak: entity.hasDependencies,
+        isMultiValued: attr.isMultivalued,
       },
       parentNode: entityId,
       position: { x: attrNodeXoffset, y: ATTR_RELATIVE_Y },
