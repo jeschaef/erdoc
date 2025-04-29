@@ -5,6 +5,7 @@ import { Node, Edge } from "reactflow";
 export type EntityNode = Node<
   {
     label: string;
+    isMultiValued: boolean, 
     isWeak: boolean;
     erId?: string;
   },

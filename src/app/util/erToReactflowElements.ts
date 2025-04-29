@@ -78,8 +78,8 @@ export const entityToReactflowElements = (
 
   const entityNode: EntityNode = {
     id: entityId,
-    type: "entity",
-    data: { label: entity.name, isWeak: entity.hasDependencies },
+    type:  "entity",
+    data: { label: entity.name, isMultiValued: entity.isMultivalued, isWeak: entity.hasDependencies },
     position,
   };
   nodes.push(entityNode);

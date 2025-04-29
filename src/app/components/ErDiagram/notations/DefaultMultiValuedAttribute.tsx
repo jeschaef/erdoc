@@ -1,34 +1,58 @@
 import { memo } from "react";
 import NodeHandles from "./NodeHandles";
 
-const DefaultMultivaluedAttribute = ({
+const DefaultMultiValuedEntity = ({
   data,
 }: {
-  data: { label: string; isKey: boolean; entityIsWeak: boolean };
-}) => (
-  <>
-    {/* Double circle effect with explicit sizing */}
-    <div className="relative min-w-[70px] min-h-[70px] flex items-center justify-center">
-      {/* Outer circle */}
-      <div className="absolute inset-0 rounded-full border-2 border-yellow-400"></div>
-      {/* Inner circle with padding */}
-      <div className="relative rounded-full border-2 border-yellow-300 bg-yellow-100 m-2 p-2 w-[90%] h-[90%] flex items-center justify-center">
-        <p
-          className={`${data.isKey && "underline underline-offset-4"} ${
-            data.entityIsWeak && "decoration-dashed"
-          }`}
-        >
-          {data.label}
-        </p>
+  data: { label: string; isKey: boolean; entityIsWeak?: boolean; erId?: string };
+}) => {
+  return (
+    <>
+      {/* Double border effect for multivalued entity */}
+      <div className="relative min-w-[120px] min-h-[80px] flex items-center justify-center">
+        {/* Outer border - similar to regular entity but with double effect */}
+        <div className={`absolute inset-0 ${
+          data.isKey ? "border-[5px] border-double" : "border-2"
+        } border-blue-700 bg-blue-200`}></div>
+        
+        {/* Inner border - creates the double border effect */}
+        <div className="absolute inset-4 border-2 border-blue-700 bg-blue-200 flex items-center justify-center">
+          <div className="z-10 p-4 text-center">{data.label}</div>
+        </div>
       </div>
-    </div>
-    <NodeHandles
-      TopHandleStyle={[{ top: "1%" }]}
-      BottomHandleStyle={[{ bottom: "1%" }]}
-      RightHandleStyle={[{ right: "1%" }]}
-      LeftHandleStyle={[{ left: "1%" }]}
-    />
-  </>
-);
+      <NodeHandles
+        TopHandleStyle={[
+          { top: "1%" },
+          { top: "1%", left: "2%" },
+          { top: "1%", left: "25%" },
+          { top: "1%", left: "75%" },
+          { top: "1%", left: "98%" },
+        ]}
+        BottomHandleStyle={[
+          { bottom: "1%" },
+          { bottom: "1%", left: "2%" },
+          { bottom: "1%", left: "25%" },
+          { bottom: "1%", left: "75%" },
+          { bottom: "1%", left: "98%" },
+        ]}
+        LeftHandleStyle={[
+          { left: "0" },
+          { left: "0", top: "2%" },
+          { left: "0", top: "25%" },
+          { left: "0", top: "75%" },
+          { left: "0", top: "98%" },
+        ]}
+        RightHandleStyle={[
+          { right: "0" },
+          { right: "0", top: "2%" },
+          { right: "0", top: "25%" },
+          { right: "0", top: "75%" },
+          { right: "0", top: "98%" },
+        ]}
+        use5PerSide={true}
+      />
+    </>
+  );
+};
 
-export default memo(DefaultMultivaluedAttribute);
+export default memo(DefaultMultiValuedEntity);
