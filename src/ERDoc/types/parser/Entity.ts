@@ -3,7 +3,7 @@ import { TokenLocation } from "./TokenLocation";
 type EntityAttribute = {
   name: string;
   isKey: boolean;
-  isMultivalued: boolean; 
+  isMultivalued: boolean;
   isComposite: boolean;
   childAttributesNames: string[] | null;
   location: TokenLocation;

@@ -4,19 +4,28 @@ import NodeHandles from "./NodeHandles";
 const DefaultMultiValuedEntity = ({
   data,
 }: {
-  data: { label: string; isKey: boolean; entityIsWeak?: boolean; erId?: string };
+  data: {
+    label: string;
+    isKey: boolean;
+    entityIsWeak?: boolean;
+    erId?: string;
+  };
 }) => {
   return (
     <>
       {/* Double border effect for multivalued entity */}
-      <div className="relative min-w-[120px] rounded-[50%] min-h-[80px] flex items-center justify-center">
+      <div className="relative flex min-h-[80px] min-w-[120px] items-center justify-center rounded-[50%]">
         {/* Outer border - similar to regular entity but with double effect */}
-        <div className={`absolute inset-0 ${
-          data.isKey ? "border-[5px] border-double rounded-[50%]" : "border-2 rounded-[50%]" 
-        } border-yellow-700 bg-yellow-200`}></div>
-        
+        <div
+          className={`absolute inset-0 ${
+            data.isKey
+              ? "rounded-[50%] border-[5px] border-double"
+              : "rounded-[50%] border-2"
+          } border-yellow-700 bg-yellow-200`}
+        ></div>
+
         {/* Inner border - creates the double border effect */}
-        <div className="absolute inset-4 border-2 rounded-[50%] border-yellow-700 bg-yellow-200 flex items-center justify-center">
+        <div className="absolute inset-4 flex items-center justify-center rounded-[50%] border-2 border-yellow-700 bg-yellow-200">
           <div className="z-10 p-4 text-center">{data.label}</div>
         </div>
       </div>

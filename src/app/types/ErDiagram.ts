@@ -15,7 +15,7 @@ export type EntityAttributeNode = Node<
   {
     label: string;
     isKey: boolean;
-    isMultiValued: boolean, 
+    isMultiValued: boolean;
     entityIsWeak: boolean;
     erId?: string;
   },
@@ -74,7 +74,7 @@ export type MultivaluedAttributeNode = Node<
   {
     label: string;
     isKey: boolean;
-    isMultiValued: boolean; 
+    isMultiValued: boolean;
     entityIsWeak: boolean;
     erId?: string;
   },
@@ -112,9 +112,8 @@ type erRelationshipAttributeType = erNodeType<
 type erAggregationType = erNodeType<"aggregation", AggregationNode>;
 type erIsAType = erNodeType<"isA", IsANode>;
 
-
 type erMultivaluedAttributeType = erNodeType<
-  "multivalued-attribute", 
+  "multivalued-attribute",
   MultivaluedAttributeNode
 >;
 
