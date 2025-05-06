@@ -21,3 +21,15 @@ The following example declares an entity with the name "Dog" which has the attri
     revenue
   }
   ```
+
+Entity attributes can also be multivalued where the attribute does not have a single value but an indefinite amount of values (like a set or list of values). 
+The syntax to indicate a multivalued attribute is by appending an `@` symbol to the attribute definition like shown in the following example:
+```
+entity Book {
+  inv_nr key
+  author @
+  titel
+  year
+  publisher: [name, location]
+}
+```
