@@ -9,13 +9,13 @@ import { Callout } from 'nextra/components'
 The syntax for weak entities is very similar to the one for entities. To declare an entity as weak, we use the `depends on` keyword followed by a comma-separated list of its 
 identifying relationships.
 Since weak entities don't have keys but _partial keys_, we use the `pkey` keyword to declare an attribute as part of the partial key of a weak entity.
-Weak entities can have [composite attributes](/docs/Syntax/entity#entity-attributes) just like regular entities. Weak entities **can't** extend
+Weak entities can have [composite attributes](/docs/syntax/entity#entity-attributes) just like regular entities. Weak entities **can't** extend
 other entities.
 
  In the following example, the weak entity "Evaluation" depends on the entity "Course" through the relationship
 "of". Also, "Grade" depends on "Evaluation" through the relationship "eval" and on "Student" through "belongs_to".
 
- See the [syntax for relationships](/docs/Syntax/relationship) in case you don't understand the last line.
+ See the [syntax for relationships](/docs/syntax/relationship) in case you don't understand the last line.
 
 <Callout>
 A weak entity **must** have total participation in its identifying relationships.
