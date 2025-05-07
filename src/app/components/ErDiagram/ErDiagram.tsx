@@ -53,9 +53,39 @@ const NotationSelectorErDiagramWrapper = ({
     [notationType, edgesOrthogonal],
   );
 
+  // Swap cardinalities of all binary relationships in chen notation
+  const erDocClone = structuredClone(erDoc);
+  if (notationType === "chen") {
+    for (const relationship of erDocClone.relationships) {
+      if (
+        relationship.participantEntities.length == 1 &&
+        relationship.participantEntities[0].isComposite
+      ) {
+        const compositeEntity = relationship.participantEntities[0];
+        if (compositeEntity.childParticipants.length == 2) {
+          const firstEntity = compositeEntity.childParticipants[0];
+          const secondEntity = compositeEntity.childParticipants[1];
+          const swapCardinality = firstEntity.cardinality;
+          firstEntity.cardinality = secondEntity.cardinality;
+          secondEntity.cardinality = swapCardinality;
+        }
+      }
+      if (relationship.participantEntities.length == 2) {
+        const firstEntity = relationship.participantEntities[0];
+        const secondEntity = relationship.participantEntities[1];
+        // If one of the entities is composite, the relation has more than 2 edges (not binary)
+        if (!firstEntity.isComposite && !secondEntity.isComposite) {
+          const swapCardinality = firstEntity.cardinality;
+          firstEntity.cardinality = secondEntity.cardinality;
+          secondEntity.cardinality = swapCardinality;
+        }
+      }
+    }
+  }
+
   return (
     <ErDiagram
-      erDoc={erDoc}
+      erDoc={erDocClone}
       erDocHasError={erDocHasError}
       notation={notation}
       lastChange={lastChange}
