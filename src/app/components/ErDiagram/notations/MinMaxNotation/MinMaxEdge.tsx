@@ -13,6 +13,8 @@ function MinMaxEdge({
   cardinality: string;
   isTotalParticipation: boolean;
   isInAggregation: boolean;
+  sourceCardinality: string; 
+  targetCardinality: string; 
 }>) {
   const [edgePath, labelX, labelY, roleLabelX, roleLabelY] = useEdgePath(
     source,
@@ -33,7 +35,7 @@ function MinMaxEdge({
             ? undefined
             : `(${
                 data?.isTotalParticipation ? "1" : "0"
-              }, ${data?.cardinality})`
+             }, ${data?.cardinality})`
         }
         labelX={labelX}
         labelY={labelY}

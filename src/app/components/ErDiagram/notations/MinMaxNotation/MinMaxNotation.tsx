@@ -11,6 +11,8 @@ class MinMaxNotation extends ErNotation {
         cardinality: string;
         isTotalParticipation: boolean;
         isInAggregation: boolean;
+        sourceCardinality: string, 
+        targetCardinality: string, 
       }>,
     ) => (
       <MinMaxEdge

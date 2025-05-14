@@ -23,6 +23,31 @@ import {
   createRelationshipNodeId,
 } from "./common";
 
+// Helper function to get the opposite cardinality for a binary relationship
+function getOppositeCardinality(
+  entityName: string,
+  relationship: Relationship
+): string {
+  // For binary relationships (two simple participants)
+  if (relationship.participantEntities.length === 2) {
+    const otherEntity = relationship.participantEntities.find(
+      (e) => e.entityName !== entityName
+    );
+    
+    if (otherEntity) {
+      if (!otherEntity.isComposite) {
+        return otherEntity.cardinality;
+      } else {
+        // For composite participants, this is a simplification
+        // A more complex logic might be needed for specific cases
+        return otherEntity.childParticipants[0]?.cardinality || "N";
+      }
+    }
+  }
+  
+  return "N"; // Default for N-ary relationships or when no match found
+}
+
 // THIS DOES HAVE SOMETHING  TO DO WITH JSON
 const inheritanceToReactflowElements = (
   childEntityNodeId: string,
@@ -155,6 +180,7 @@ const createChildParticipantEdge = (
   relationshipId: string,
   relationshipNodeId: string,
   edgeStyle: ReturnType<ErNotation["edgeMarkers"]>,
+  relationship: Relationship,
   handleNumber: number = 0,
 ) => ({
   id: `${
@@ -170,7 +196,11 @@ const createChildParticipantEdge = (
   type: "erEdge",
   data: {
     cardinality: child.cardinality,
+    sourceCardinality: child.cardinality,
+    targetCardinality: getOppositeCardinality(child.entityName, relationship),
     isTotalParticipation: child.participation === "total",
+    sourceEntityName: child.entityName,
+    targetEntityName: entity.entityName,
   },
   markerStart: edgeStyle?.markerStart,
   markerEnd: edgeStyle?.markerEnd,
@@ -185,6 +215,7 @@ const childParticipantToEdge = (
   edgeNotation: ErNotation["edgeMarkers"],
   relationshipId: string,
   relationshipNodeId: string,
+  relationship: Relationship,
 ): Edge[] => {
   const edges: Edge[] = [];
 
@@ -221,6 +252,7 @@ const childParticipantToEdge = (
         relationshipId,
         relationshipNodeId,
         edgeStyle,
+        relationship,
         handleNo,
       ),
     );
@@ -285,6 +317,7 @@ export const relationshipToReactflowElements = (
           edgeNotation,
           relationshipId,
           relationshipNodeId,
+          relationship,
         ),
       );
     } else {
@@ -301,7 +334,11 @@ export const relationshipToReactflowElements = (
         type: "erEdge",
         data: {
           cardinality: entity.cardinality,
+          sourceCardinality: entity.cardinality,
+          targetCardinality: getOppositeCardinality(entity.entityName, relationship),
           isTotalParticipation: entity.participation === "total",
+          sourceEntityName: relationship.name,
+          targetEntityName: entity.entityName,
         },
         markerStart: edgeStyle?.markerStart,
         markerEnd: edgeStyle?.markerEnd,

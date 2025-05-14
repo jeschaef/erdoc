@@ -19,7 +19,8 @@ export type ErJSON = {
     id: string;
     source: string;
     target: string;
-    cardinality?: string; 
+    sourceCardinality?: string; 
+    targetCardinality?: string; 
   }[];
 };
 
@@ -55,7 +56,8 @@ export const useJSON = (onErDocChange: (evt: ErDocChangeEvent) => void) => {
       id: edge.id,
       source: edge.source,
       target: edge.target,
-      cardinality: edge.data?.cardinality,
+      sourceCardinality: edge.data?.sourceCardinality,
+      targetCardinality: edge.data?.targetCardinality || "1..1", // Default until backend sets it
     }));
     const editorValue = monaco?.editor.getModels()[0].getValue();
 
