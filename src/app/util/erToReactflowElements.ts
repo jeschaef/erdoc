@@ -136,7 +136,7 @@ export const entityToReactflowElements = (
     });
 
     edges.push({
-      id: `entity-attr: ${entity.name}->${attr.name}`,
+      id: `entity-attr:${entity.name}->${attr.name}${attr.isMultivalued ? '@' : ''}`,
       source: entityId,
       target: attrID,
       sourceHandle: "l",
